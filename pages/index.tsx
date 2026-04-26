@@ -476,13 +476,13 @@ export default function Home() {
                     <div className={styles.combinedStat}>
                       <div className={styles.statLabel}>TOTAL UNITS</div>
                       <div className={styles.combinedUnits}>
-                        {(sessions.new.units + sessions.old.units).toFixed(1)}
+                        {(sessions.new!.units + sessions.old!.units).toFixed(1)}
                       </div>
                     </div>
                     <div className={styles.combinedStat}>
                       <div className={styles.statLabel}>COMBINED BILL</div>
                       <div className={styles.combinedBill}>
-                        Rs {(sessions.new.bill.total + sessions.old.bill.total).toLocaleString()}
+                        Rs {(sessions.new!.bill.total + sessions.old!.bill.total).toLocaleString()}
                       </div>
                     </div>
                   </div>
@@ -501,7 +501,7 @@ export default function Home() {
                 <div className={styles.adviceBox}>
                   <div className={styles.adviceTitle}>⚡ When to Switch Meters</div>
                   {(() => {
-                    const nu = sessions.new.units, ou = sessions.old.units;
+                    const nu = sessions.new!.units, ou = sessions.old!.units;
                     const heavier = nu > ou ? "New" : "Old";
                     const lighter = nu > ou ? "Old" : "New";
                     const lighterColor = nu > ou ? METERS.old.color : METERS.new.color;

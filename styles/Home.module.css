@@ -806,17 +806,10 @@
     min-height: calc(100vh - 40px);
   }
   
-  .bottomNav {
-    border-radius: 0 0 20px 20px;
-  }
 }
 
-/* ─── Accessibility & Focus States ───────────────────────────────────────── */
-button:focus-visible,
-input:focus-visible {
-  outline: 2px solid #22D3EE;
-  outline-offset: 2px;
-}
+/* ─── Accessibility & Focus States ───────────────────────────────────────────────── */
+/* Note: Focus states are handled inline in components for CSS Modules compatibility */
 
 /* ─── Print Styles ───────────────────────────────────────────────── */
 @media print {
