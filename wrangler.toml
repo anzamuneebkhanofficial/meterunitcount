@@ -1,0 +1,6 @@
+name = "electricity-meter-checker"
+compatibility_date = "2024-04-26"
+pages_build_output_dir = "./out"
+
+[vars]
+NODE_VERSION = "22.0.0"

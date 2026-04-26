@@ -1,5 +1,7 @@
-import { useState } from "react";
-import styles from '../styles/Home.module.css';
+'use client';
+
+import { useState } from 'react';
+import styles from '@/styles/Home.module.css';
 
 // ─── LESCO Calculation Engine ─────────────────────────────────────────────────
 interface BillCalculation {
@@ -70,7 +72,9 @@ const DEFAULT_RATES: Rates = {
 const METERS = {
   new: { label: "New Meter", short: "NEW", fixedCharges: 400, color: "#22D3EE", bg: "#0C2D3A" },
   old: { label: "Old Meter", short: "OLD", fixedCharges: 200, color: "#FBBF24", bg: "#2D1F00" },
-};
+} as const;
+
+type MeterType = keyof typeof METERS;
 
 // ─── Small helpers ────────────────────────────────────────────────────────────
 interface BillRowProps {
@@ -96,7 +100,7 @@ function BillRow({ label, val, bold, green, note }: BillRowProps) {
 }
 
 interface MeterResultProps {
-  id: keyof typeof METERS;
+  id: MeterType;
   session: MeterSession;
   onReenter: () => void;
 }
@@ -152,7 +156,7 @@ function MeterResult({ id, session, onReenter }: MeterResultProps) {
   );
 }
 
-// ─── Settings ─────────────────────────────────────────────────────────────────
+// ─── Settings Component ─────────────────────────────────────────────────────────────────
 interface SettingsTabProps {
   rates: Rates;
   setRates: (rates: Rates) => void;
@@ -161,7 +165,7 @@ interface SettingsTabProps {
 }
 
 function SettingsTab({ rates, setRates, fixedCharges, setFixedCharges }: SettingsTabProps) {
-  const [lr, setLr] = useState({ ...rates });
+  const [lr, setLr] = useState<Rates>({ ...rates });
   const [lf, setLf] = useState({ ...fixedCharges });
   const [ok, setOk] = useState(false);
   
@@ -180,13 +184,13 @@ function SettingsTab({ rates, setRates, fixedCharges, setFixedCharges }: Setting
   };
 
   const rateFields = [
-    { k: "gopTariff", label: "Energy Rate (Rs per unit)", hint: "Basic price per unit. Check your bill under 'GOP TARIFF'. Currently ~Rs 10.54." },
-    { k: "fpaPerUnit", label: "Fuel Price Adjustment — FPA (Rs/unit)", hint: "Changes EVERY MONTH. Check your latest bill. Can be Rs 1 to Rs 4+ per unit." },
-    { k: "fcSurchargeRate", label: "FC Surcharge (enter as decimal)", hint: "e.g. enter 0.0408 for 4.08%. Usually around 4%. Find on your bill." },
-    { k: "qtaRate", label: "Quarterly Tariff Adj. (decimal)", hint: "e.g. 0.033 = 3.3%. Changes every quarter." },
-    { k: "edRate", label: "Electricity Duty (decimal)", hint: "e.g. 0.016 = 1.6%. Government tax." },
-    { k: "gstRate", label: "GST (decimal)", hint: "e.g. 0.18 = 18%. General Sales Tax." },
-  ] as const;
+    { k: "gopTariff" as const, label: "Energy Rate (Rs per unit)", hint: "Basic price per unit. Check your bill under 'GOP TARIFF'. Currently ~Rs 10.54." },
+    { k: "fpaPerUnit" as const, label: "Fuel Price Adjustment — FPA (Rs/unit)", hint: "Changes EVERY MONTH. Check your latest bill. Can be Rs 1 to Rs 4+ per unit." },
+    { k: "fcSurchargeRate" as const, label: "FC Surcharge (enter as decimal)", hint: "e.g. enter 0.0408 for 4.08%. Usually around 4%. Find on your bill." },
+    { k: "qtaRate" as const, label: "Quarterly Tariff Adj. (decimal)", hint: "e.g. 0.033 = 3.3%. Changes every quarter." },
+    { k: "edRate" as const, label: "Electricity Duty (decimal)", hint: "e.g. 0.016 = 1.6%. Government tax." },
+    { k: "gstRate" as const, label: "GST (decimal)", hint: "e.g. 0.18 = 18%. General Sales Tax." },
+  ];
 
   return (
     <div className={styles.settingsContainer}>
@@ -245,7 +249,7 @@ export default function Home() {
 
   // Wizard state
   const [step, setStep] = useState<"pick" | "enter" | "result">("pick");
-  const [active, setActive] = useState<keyof typeof METERS | null>(null);
+  const [active, setActive] = useState<MeterType | null>(null);
   const [lastBill, setLastBill] = useState("");
   const [current, setCurrent] = useState("");
   const [errors, setErrors] = useState<{ lb?: string; cu?: string }>({});
@@ -253,7 +257,7 @@ export default function Home() {
   const both = sessions.new && sessions.old;
   const other = active === "new" ? "old" : "new";
 
-  const startMeter = (id: keyof typeof METERS) => {
+  const startMeter = (id: MeterType) => {
     setActive(id);
     setLastBill(sessions[id]?.lastBillVal?.toString() || "");
     setCurrent(sessions[id]?.currentVal?.toString() || "");
