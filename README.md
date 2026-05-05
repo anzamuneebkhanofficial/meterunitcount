@@ -1,5 +1,7 @@
 # ⚡ Meter Unit Count — Electricity Bill Tracker
 
+## 🌐 **Live Website:** [**meterunitcount.pages.dev**](https://meterunitcount.pages.dev/)
+
 A smart, professional web application to **track electricity consumption** across multiple meters in your home. Built for Pakistani households using **LESCO** billing rates, this app tells you exactly how many units each meter has consumed, estimates each meter's bill separately, and calculates the combined total — all in real time.
 
 ---
