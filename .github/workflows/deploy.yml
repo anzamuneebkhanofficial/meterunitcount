@@ -35,3 +35,4 @@ jobs:
           projectName: electricity-meter-checker
           directory: out
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          wranglerVersion: '3'
