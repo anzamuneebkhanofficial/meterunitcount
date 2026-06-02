@@ -46,6 +46,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="google-site-verification" content="wa75wSZMOoeDlDjfFF80cvnvhCdTWW25NBp49MnvtI0" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
