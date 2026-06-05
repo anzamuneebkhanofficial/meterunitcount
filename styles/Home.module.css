@@ -1,4 +1,3 @@
-/* ─── Global Styles & Reset ───────────────────────────────────────────────── */
 .container {
   background: #0F172A;
   min-height: 100vh;
@@ -9,7 +8,6 @@
   position: relative;
 }
 
-/* ─── Header Styles ───────────────────────────────────────────────── */
 .header {
   background: #1E293B;
   padding: 16px 16px 12px;
@@ -69,7 +67,6 @@
   font-size: 12px;
 }
 
-/* ─── Content Layout ───────────────────────────────────────────────── */
 .content {
   padding-bottom: 80px;
 }
@@ -91,7 +88,6 @@
   margin-bottom: 24px;
 }
 
-/* ─── Button Styles ───────────────────────────────────────────────── */
 .meterButton {
   width: 100%;
   border: 2px solid;
@@ -181,7 +177,6 @@
   transform: translateY(-2px);
 }
 
-/* ─── Entry Form Styles ───────────────────────────────────────────────── */
 .enterHeader {
   display: flex;
   align-items: center;
@@ -293,7 +288,6 @@
   transform: translateY(-2px);
 }
 
-/* ─── Result Styles ───────────────────────────────────────────────── */
 .resultTitle {
   font-weight: 900;
   font-size: 20px;
@@ -412,7 +406,7 @@
 
 .billRowNote {
   color: #475569;
-  font-size: 11px  ;
+  font-size: 11px;
   margin-left: 6px;
 }
 
@@ -487,7 +481,6 @@
   transform: translateY(-2px);
 }
 
-/* ─── Report Styles ───────────────────────────────────────────────── */
 .combinedTotal {
   background: linear-gradient(135deg, #0A2016, #101A30);
   border: 2px solid #4ADE80;
@@ -551,7 +544,6 @@
   line-height: 1.8;
 }
 
-/* ─── Empty State ───────────────────────────────────────────────── */
 .emptyState {
   text-align: center;
   padding: 48px 16px;
@@ -574,7 +566,6 @@
   margin-bottom: 24px;
 }
 
-/* ─── Settings Styles ───────────────────────────────────────────────── */
 .settingsContainer {
   padding: 20px 16px 100px;
 }
@@ -706,7 +697,6 @@
   margin-top: 12px;
 }
 
-/* ─── Bottom Navigation ───────────────────────────────────────────────── */
 .bottomNav {
   position: fixed;
   bottom: 0;
@@ -753,13 +743,12 @@
   font-weight: 800;
 }
 
-/* ─── Responsive Design ───────────────────────────────────────────────── */
 @media (max-width: 480px) {
   .container {
     max-width: 100%;
     border-radius: 0;
   }
-  
+
   .bottomNav {
     max-width: 100%;
   }
@@ -770,29 +759,29 @@
     grid-template-columns: 1fr;
     gap: 8px;
   }
-  
+
   .combinedStats {
     grid-template-columns: 1fr;
     gap: 8px;
   }
-  
+
   .fixedChargesGrid {
     grid-template-columns: 1fr;
     gap: 12px;
   }
-  
+
   .pageTitle {
     font-size: 20px;
   }
-  
+
   .enterTitle {
     font-size: 17px;
   }
-  
+
   .numberInput {
     font-size: 20px;
   }
-  
+
   .previewValue {
     font-size: 36px;
   }
@@ -805,14 +794,12 @@
     margin: 20px auto;
     min-height: calc(100vh - 40px);
   }
-  
+
 }
 
-/* ─── Accessibility & Focus States ───────────────────────────────────────────────── */
-/* Note: Focus states are handled inline in components for CSS Modules compatibility */
 
-/* ─── Print Styles ───────────────────────────────────────────────── */
 @media print {
+
   .bottomNav,
   .backButton,
   .toggleButton,
@@ -821,12 +808,12 @@
   .nextMeterButton {
     display: none;
   }
-  
+
   .container {
     max-width: 100%;
     box-shadow: none;
   }
-  
+
   .content {
     padding-bottom: 0;
   }

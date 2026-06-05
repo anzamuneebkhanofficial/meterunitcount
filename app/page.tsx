@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import styles from '@/styles/Home.module.css';
 
-// ─── LESCO Calculation Engine ─────────────────────────────────────────────────
 interface BillCalculation {
   units: number;
   energy: number;
@@ -76,7 +75,6 @@ const METERS = {
 
 type MeterType = keyof typeof METERS;
 
-// ─── Small helpers ────────────────────────────────────────────────────────────
 interface BillRowProps {
   label: string;
   val: number;
@@ -126,7 +124,7 @@ function MeterResult({ id, session, onReenter }: MeterResultProps) {
           <div className={styles.perUnit}>~Rs {b.perUnit}/unit avg</div>
         </div>
       </div>
-      <button 
+      <button
         onClick={() => setOpen(!open)}
         className={styles.toggleButton}
         style={{ color: m.color, borderColor: m.color + '44' }}
@@ -156,7 +154,6 @@ function MeterResult({ id, session, onReenter }: MeterResultProps) {
   );
 }
 
-// ─── Settings Component ─────────────────────────────────────────────────────────────────
 interface SettingsTabProps {
   rates: Rates;
   setRates: (rates: Rates) => void;
@@ -168,16 +165,16 @@ function SettingsTab({ rates, setRates, fixedCharges, setFixedCharges }: Setting
   const [lr, setLr] = useState<Rates>({ ...rates });
   const [lf, setLf] = useState({ ...fixedCharges });
   const [ok, setOk] = useState(false);
-  
+
   const save = () => {
     const r = {} as Rates;
     for (const k in lr) {
       (r as any)[k] = parseFloat((lr as any)[k]) || rates[k as keyof Rates];
     }
     setRates(r);
-    setFixedCharges({ 
-      new: parseFloat(lf.new.toString()) || 400, 
-      old: parseFloat(lf.old.toString()) || 200 
+    setFixedCharges({
+      new: parseFloat(lf.new.toString()) || 400,
+      old: parseFloat(lf.old.toString()) || 200
     });
     setOk(true);
     setTimeout(() => setOk(false), 2000);
@@ -240,14 +237,12 @@ function SettingsTab({ rates, setRates, fixedCharges, setFixedCharges }: Setting
   );
 }
 
-// ─── MAIN APP ─────────────────────────────────────────────────────────────────
 export default function Home() {
   const [tab, setTab] = useState<"check" | "report" | "settings">("check");
   const [rates, setRates] = useState<Rates>(DEFAULT_RATES);
   const [fixedCharges, setFixedCharges] = useState({ new: 400, old: 200 });
   const [sessions, setSessions] = useState<{ new: MeterSession | null; old: MeterSession | null }>({ new: null, old: null });
 
-  // Wizard state
   const [step, setStep] = useState<"pick" | "enter" | "result">("pick");
   const [active, setActive] = useState<MeterType | null>(null);
   const [lastBill, setLastBill] = useState("");
@@ -292,7 +287,6 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      {/* ── Header ── */}
       <header className={styles.header}>
         <div className={styles.headerContent}>
           <span className={styles.logo}>⚡</span>
@@ -319,10 +313,8 @@ export default function Home() {
       </header>
 
       <div className={styles.content}>
-        {/* ══ CHECK TAB ══ */}
         {tab === "check" && (
           <>
-            {/* PICK */}
             {step === "pick" && (
               <div className={styles.pageContent}>
                 <div className={styles.pageTitle}>Check a Meter</div>
@@ -356,13 +348,13 @@ export default function Home() {
 
                 {both
                   ? <button onClick={() => setTab("report")} className={styles.reportButton}>
-                      📊 Get Final Report
-                    </button>
+                    📊 Get Final Report
+                  </button>
                   : <div className={styles.hintText}>
-                      {sessions.new || sessions.old 
-                        ? "Check the other meter too to unlock the Final Report." 
-                        : "Check both meters to see the combined report."}
-                    </div>
+                    {sessions.new || sessions.old
+                      ? "Check the other meter too to unlock the Final Report."
+                      : "Check both meters to see the combined report."}
+                  </div>
                 }
               </div>
             )}
